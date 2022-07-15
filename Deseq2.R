@@ -1,4 +1,4 @@
-#×¢ÊÍÖĞÎÄÂÒÂë ·½·¨£ºFile-Reopen with Encoding-CP936
+#æ³¨é‡Šä¸­æ–‡ä¹±ç  æ–¹æ³•ï¼šFile-Reopen with Encoding-CP936
 
 
 library(tidyverse)
@@ -29,38 +29,38 @@ colData
 
 dds <- DESeqDataSetFromMatrix(mycounts, colData, design= ~ condition)
 dds <- DESeq(dds)
- # ²é¿´Ò»ÏÂddsµÄÄÚÈİ
+ # æŸ¥çœ‹ä¸€ä¸‹ddsçš„å†…å®¹
  dds
  
- #Ê¹ÓÃDESeq2°üÖĞµÄresults()º¯Êı£¬ÌáÈ¡²îÒì·ÖÎöµÄ½á¹û
- #Usage:results(object, contrast, name, .....£©
- #½«ÌáÈ¡µÄ²îÒì·ÖÎö½á¹û¶¨ÒåÎª±äÁ¿"res" 
- #contrast: ¶¨ÒåË­ºÍË­±È½Ï
+ #ä½¿ç”¨DESeq2åŒ…ä¸­çš„results()å‡½æ•°ï¼Œæå–å·®å¼‚åˆ†æçš„ç»“æœ
+ #Usage:results(object, contrast, name, .....ï¼‰
+ #å°†æå–çš„å·®å¼‚åˆ†æç»“æœå®šä¹‰ä¸ºå˜é‡"res" 
+ #contrast: å®šä¹‰è°å’Œè°æ¯”è¾ƒ
  res = results(dds, contrast=c("condition", "control", "treat"))
- #¶Ô½á¹ûresÀûÓÃorder()º¯Êı°´pvalueÖµ½øĞĞÅÅĞò
- #´´½¨¾ØÕóÊ±£¬X[i,]Ö¸¾ØÕóXÖĞµÄµÚiĞĞ£¬X[,j]Ö¸¾ØÕóXÖĞµÄµÚjÁĞ
- #order()º¯ÊıÏÈ¶ÔÊıÖµÅÅĞò£¬È»ºó·µ»ØÅÅĞòºó¸÷ÊıÖµµÄË÷Òı£¬³£ÓÃÓÃ·¨£ºV[order(V)]»òÕßdf[order(df$variable),]
+ #å¯¹ç»“æœresåˆ©ç”¨order()å‡½æ•°æŒ‰pvalueå€¼è¿›è¡Œæ’åº
+ #åˆ›å»ºçŸ©é˜µæ—¶ï¼ŒX[i,]æŒ‡çŸ©é˜µXä¸­çš„ç¬¬iè¡Œï¼ŒX[,j]æŒ‡çŸ©é˜µXä¸­çš„ç¬¬jåˆ—
+ #order()å‡½æ•°å…ˆå¯¹æ•°å€¼æ’åºï¼Œç„¶åè¿”å›æ’åºåå„æ•°å€¼çš„ç´¢å¼•ï¼Œå¸¸ç”¨ç”¨æ³•ï¼šV[order(V)]æˆ–è€…df[order(df$variable),]
  res = res[order(res$pvalue),]
- #ÏÔÊ¾res½á¹ûÊ×ĞÅÏ¢
+ #æ˜¾ç¤ºresç»“æœé¦–ä¿¡æ¯
  head(res)
- #¶Ôres¾ØÕó½øĞĞ×Ü½á£¬ÀûÓÃsummaryÃüÁîÍ³¼ÆÏÔÊ¾Ò»¹²¶àÉÙ¸ögenesÉÏµ÷ºÍÏÂµ÷
+ #å¯¹resçŸ©é˜µè¿›è¡Œæ€»ç»“ï¼Œåˆ©ç”¨summaryå‘½ä»¤ç»Ÿè®¡æ˜¾ç¤ºä¸€å…±å¤šå°‘ä¸ªgenesä¸Šè°ƒå’Œä¸‹è°ƒ
  summary(res)
- #½«·ÖÎöµÄËùÓĞ½á¹û½øĞĞÊä³ö±£´æ
+ #å°†åˆ†æçš„æ‰€æœ‰ç»“æœè¿›è¡Œè¾“å‡ºä¿å­˜
  write.csv(res, file="All_results.csv")
- #ÏÔÊ¾ÏÔÖø²îÒìµÄÊıÄ¿
+ #æ˜¾ç¤ºæ˜¾è‘—å·®å¼‚çš„æ•°ç›®
  table(res$padj<0.05)
  
  
- #Ê¹ÓÃsubset()º¯Êı¹ıÂËĞèÒªµÄ½á¹ûÖÁĞÂµÄ±äÁ¿diff_gene_Group2ÖĞ
- #Usage:subset(x, ...)£¬ÆäÖĞxÎªobjects£¬...ÎªÉ¸Ñ¡²ÎÊı»òÌõ¼ş
+ #ä½¿ç”¨subset()å‡½æ•°è¿‡æ»¤éœ€è¦çš„ç»“æœè‡³æ–°çš„å˜é‡diff_gene_Group2ä¸­
+ #Usage:subset(x, ...)ï¼Œå…¶ä¸­xä¸ºobjectsï¼Œ...ä¸ºç­›é€‰å‚æ•°æˆ–æ¡ä»¶
  diff_gene_Group2 <- subset(res, padj < 0.05 & abs(log2FoldChange) > 1)
- #Ò²¿ÉÒÔ½«²îÒì±¶Êı·Ö¿ªÀ´Ğ´£º
+ #ä¹Ÿå¯ä»¥å°†å·®å¼‚å€æ•°åˆ†å¼€æ¥å†™ï¼š
  #> diff_gene_Group2 <-subset(res,padj < 0.05 & (log2FoldChange > 1 | log2FoldChange < -1))
- #Ê¹ÓÃdimº¯Êı²é¿´¸Ã½á¹ûµÄÎ¬¶È¡¢¹æÄ£
+ #ä½¿ç”¨dimå‡½æ•°æŸ¥çœ‹è¯¥ç»“æœçš„ç»´åº¦ã€è§„æ¨¡
  dim(diff_gene_Group2)
- #ÏÔÊ¾½á¹ûµÄÊ×ĞÅÏ¢
+ #æ˜¾ç¤ºç»“æœçš„é¦–ä¿¡æ¯
  head(diff_gene_Group2)
- #½«½á¹û½øĞĞÊä³ö±£´æ
+ #å°†ç»“æœè¿›è¡Œè¾“å‡ºä¿å­˜
  write.csv(diff_gene_Group2, file = "C:/Users/psj/Desktop/different_gene_Group2_1")
  
  #BiocManager::install("clusterProfiler")
@@ -68,7 +68,7 @@ dds <- DESeq(dds)
  BiocManager::install("DOSE")
  require(DOSE)
  library(DO.db)
- # ÈËÀàµÄ×¢ÊÍÊı¾İ
+ # äººç±»çš„æ³¨é‡Šæ•°æ®
  #BiocManager::install("org.Hs.eg.db")
  library(org.Hs.eg.db)
  
