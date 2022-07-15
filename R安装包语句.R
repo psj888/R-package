@@ -1,0 +1,103 @@
+#注释中文乱码 方法：File-Reopen with Encoding-CP936
+
+rm(list = ls()) 
+#首先配置中国大陆特色镜像
+options()$repos 
+options()$BioC_mirror
+#options(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/")
+options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+options()$repos 
+options()$BioC_mirror
+
+#然后按需安装指定的R包
+# https://bioconductor.org/packages/release/bioc/html/GEOquery.html
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager") 
+
+if(!require("tidyr")) install.packages("tidyr",update = F,ask = F)
+if(!require("dplyr")) install.packages("dplyr",update = F,ask = F)
+if(!require("stringr")) install.packages("stringr",update = F,ask = F)
+if(!require("stringi")) install.packages("stringi",update = F,ask = F)
+if(!require("ggplot2")) install.packages("ggplot2",update = F,ask = F)
+if(!require("data.table")) install.packages("data.table",update = F,ask = F)
+if(!require("ggrepel")) install.packages("ggrepel",update = F,ask = F)
+if(!require("devtools")) install.packages("devtools",update = F,ask = F)
+if(!require("pheatmap")) install.packages("pheatmap",update = F,ask = F)
+if(!require("ggfortify")) install.packages("ggfortify",update = F,ask = F)
+if(!require("survival")) install.packages("survival",update = F,ask = F)
+if(!require("survminer")) install.packages("survminer",update = F,ask = F)
+if(!require("glmnet")) install.packages("glmnet",update = F,ask = F)
+if(!require("ggpubr")) install.packages("ggpubr",update = F,ask = F)
+if(!require("ggsignif")) install.packages("ggsignif",update = F,ask = F)
+if(!require("tibble")) install.packages("tibble",update = F,ask = F)
+if(!require("cowplot")) install.packages("cowplot",update = F,ask = F)
+if(!require("timeROC")) install.packages("timeROC",update = F,ask = F)
+if(!require("survivalROC")) install.packages("survivalROC",update = F,ask = F)
+if(!require("randomForest")) install.packages("randomForest",update = F,ask = F)
+if(!require("Hmisc")) install.packages("Hmisc",update = F,ask = F)
+if(!require("jsonlite")) install.packages("jsonlite",update = F,ask = F)
+if(!require("corrplot")) install.packages("corrplot",update = F,ask = F)
+if(!require("R.utils")) install.packages("R.utils",update = F,ask = F)
+if(!require("purrr")) install.packages("purrr",update = F,ask = F)
+if(!require("future.apply")) install.packages("future.apply",update = F,ask = F)
+if(!require("pkgmaker")) install.packages("pkgmaker",update = F,ask = F)
+if(!require("rngtools")) install.packages("rngtools",update = F,ask = F)
+if(!require("NMF")) install.packages("NMF",update = F,ask = F)
+if(!require("bigmemory")) install.packages("bigmemory",update = F,ask = F)
+if(!require("caret")) install.packages("caret",update = F,ask = F)
+if(!require("forcats")) install.packages("forcats",update = F,ask = F)
+if(!require("XML")) install.packages("XML",update = F,ask = F)
+if(!require("GOplot")) install.packages("GOplot",update = F,ask = F)
+if(!require("export")) install.packages("export",update = F,ask = F)
+if(!require("limma")) BiocManager::install("limma",update = F,ask = F)
+if(!require("Biobase")) BiocManager::install("Biobase",update = F,ask = F)
+if(!require("IRanges")) BiocManager::install("IRanges",update = F,ask = F)
+if(!require("DO.db")) BiocManager::install("DO.db",update = F,ask = F)
+if(!require("GO.db")) BiocManager::install("GO.db",update = F,ask = F)
+if(!require("fgsea")) BiocManager::install("fgsea",update = F,ask = F)
+if(!require("gridGraphics")) BiocManager::install("gridGraphics",update = F,ask = F)
+if(!require("clusterProfiler")) BiocManager::install("clusterProfiler",update = F,ask = F)
+if(!require("GEOquery")) BiocManager::install("GEOquery",update = F,ask = F)
+if(!require("hugene10sttranscriptcluster.db")) BiocManager::install("hugene10sttranscriptcluster.db",update = F,ask = F)
+if(!require("DOSE")) BiocManager::install("DOSE",update = F,ask = F)
+if(!require("GSEABase")) BiocManager::install("GSEABase",update = F,ask = F)
+if(!require("enrichplot")) BiocManager::install("enrichplot",update = F,ask = F)
+if(!require("RTCGA.clinical")) BiocManager::install("RTCGA.clinical",update = F,ask = F)
+if(!require("bladderbatch")) BiocManager::install("bladderbatch",update = F,ask = F)
+if(!require("sva")) BiocManager::install("sva",update = F,ask = F)
+if(!require("DESeq2")) BiocManager::install("DESeq2",update = F,ask = F)
+if(!require("edgeR")) BiocManager::install("edgeR",update = F,ask = F)
+if(!require("pathview")) BiocManager::install("pathview",update = F,ask = F)
+if(!require("vsn")) BiocManager::install("vsn",update = F,ask = F)
+
+BiocManager::install(c("GSEABase","GSVA","clusterProfiler" ),ask = F,update = F)
+BiocManager::install(c("GEOquery","limma","impute" ),ask = F,update = F)
+BiocManager::install(c("org.Hs.eg.db","hgu133plus2.db" ),ask = F,update = F)
+
+# 下面代码被我注释了，意思是这些代码不需要运行，因为它过时了，很多旧教程就忽略
+# 在代码前面加上 # 这个符号，代码代码被注释，意思是不会被运行
+# source("https://bioconductor.org/biocLite.R") 
+# library('BiocInstaller') 
+# options(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/") 
+# BiocInstaller::biocLite("GEOquery")
+# BiocInstaller::biocLite(c("limma"))
+# BiocInstaller::biocLite(c("impute"))
+
+# 但是接下来的代码又需要运行啦
+options()$repos
+install.packages('WGCNA')
+install.packages(c("FactoMineR", "factoextra"))
+install.packages(c("ggplot2", "pheatmap","ggpubr"))
+library("FactoMineR")
+library("factoextra")
+
+library(GSEABase)
+library(GSVA)
+library(clusterProfiler)
+library(ggplot2)
+library(ggpubr)
+library(hgu133plus2.db)
+library(limma)
+library(org.Hs.eg.db)
+library(pheatmap)
